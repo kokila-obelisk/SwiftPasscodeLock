@@ -9,15 +9,15 @@
 import UIKit
 
 public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegate {
-    
+
     public enum LockState {
         case EnterPasscode
         case SetPasscode
         case ChangePasscode
         case RemovePasscode
-        
+
         func getState() -> PasscodeLockStateType {
-            
+
             switch self {
             case .EnterPasscode: return EnterPasscodeState()
             case .SetPasscode: return SetPasscodeState()
@@ -26,179 +26,309 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
             }
         }
     }
-    
+
     @IBOutlet public weak var titleLabel: UILabel?
-    @IBOutlet public weak var descriptionLabel: UILabel?
+    @IBOutlet public weak var descriptionLabel: UILabel!
     @IBOutlet public var placeholders: [PasscodeSignPlaceholderView] = [PasscodeSignPlaceholderView]()
     @IBOutlet public weak var cancelButton: UIButton?
     @IBOutlet public weak var deleteSignButton: UIButton?
-    @IBOutlet public weak var touchIDButton: UIButton?
+    @IBOutlet public weak var touchIDButton: UIButton!
     @IBOutlet public weak var placeholdersX: NSLayoutConstraint?
-    
+    @IBOutlet var backgroundImageView: UIImageView!
+
+    var isCancelButton: Bool = true
+    var ifTouchEnabled: Bool = true
+    var touchId: Bool = true
+    var coverView: UIView!
+
     public var successCallback: ((lock: PasscodeLockType) -> Void)?
-    public var dismissCompletionCallback: (()->Void)?
+    public var dismissCompletionCallback: (() -> Void)?
     public var animateOnDismiss: Bool
     public var notificationCenter: NSNotificationCenter?
-    
+
     internal let passcodeConfiguration: PasscodeLockConfigurationType
     internal let passcodeLock: PasscodeLockType
     internal var isPlaceholdersAnimationCompleted = true
-    
+
     private var shouldTryToAuthenticateWithBiometrics = true
-    
+    var screenName: String = ""
+
     // MARK: - Initializers
-    
+
     public init(state: PasscodeLockStateType, configuration: PasscodeLockConfigurationType, animateOnDismiss: Bool = true) {
-        
+
         self.animateOnDismiss = animateOnDismiss
-        
+
         passcodeConfiguration = configuration
         passcodeLock = PasscodeLock(state: state, configuration: configuration)
-        
+
         let nibName = "PasscodeLockView"
         let bundle: NSBundle = bundleForResource(nibName, ofType: "nib")
-        
+
         super.init(nibName: nibName, bundle: bundle)
-        
+
         passcodeLock.delegate = self
         notificationCenter = NSNotificationCenter.defaultCenter()
     }
-    
+
     public convenience init(state: LockState, configuration: PasscodeLockConfigurationType, animateOnDismiss: Bool = true) {
-        
+
         self.init(state: state.getState(), configuration: configuration, animateOnDismiss: animateOnDismiss)
     }
-    
+
     public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     deinit {
-        
+
         clearEvents()
     }
-    
+
     // MARK: - View
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         updatePasscodeView()
         deleteSignButton?.enabled = false
-        
+        configBackgroundImage()
         setupEvents()
     }
-    
+
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if shouldTryToAuthenticateWithBiometrics {
-        
+
             authenticateWithBiometrics()
         }
     }
-    
+
+    func configBackgroundImage() {
+        backgroundImageView.image = UIImage(named: "")// To be added
+
+    }
+
     internal func updatePasscodeView() {
-        
-        titleLabel?.text = passcodeLock.state.title
+
+       // titleLabel?.text = passcodeLock.state.title
         descriptionLabel?.text = passcodeLock.state.description
-        cancelButton?.hidden = !passcodeLock.state.isCancellableAction
+       // cancelButton?.hidden = !passcodeLock.state.isCancellableAction
         touchIDButton?.hidden = !passcodeLock.isTouchIDAllowed
+        touchIDButton?.enabled
     }
-    
+
     // MARK: - Events
-    
+
     private func setupEvents() {
-        
-        notificationCenter?.addObserver(self, selector: "appWillEnterForegroundHandler:", name: UIApplicationWillEnterForegroundNotification, object: nil)
-        notificationCenter?.addObserver(self, selector: "appDidEnterBackgroundHandler:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+
+        notificationCenter?.addObserver(self, selector: #selector(PasscodeLockViewController.appWillEnterForegroundHandler(_:)), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        notificationCenter?.addObserver(self, selector: #selector(PasscodeLockViewController.appDidEnterBackgroundHandler(_:)), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
-    
+
     private func clearEvents() {
-        
+
         notificationCenter?.removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
         notificationCenter?.removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
-    
+
+    public func toCheckForTouchId(ifTouchEnabled: Bool) {
+        self.ifTouchEnabled = ifTouchEnabled
+        shouldTryToAuthenticateWithBiometrics = self.ifTouchEnabled
+    }
+
+    public func isFromScreen(screenName: String) {
+        self.screenName = screenName
+
+    }
+
     public func appWillEnterForegroundHandler(notification: NSNotification) {
-        
-        authenticateWithBiometrics()
+
+        if shouldTryToAuthenticateWithBiometrics {
+            authenticateWithBiometrics()
+        }
+        if !passcodeLock.isTouchIDAllowed {
+            touchIDButton.hidden = true
+        }
     }
-    
+
     public func appDidEnterBackgroundHandler(notification: NSNotification) {
-        
-        shouldTryToAuthenticateWithBiometrics = false
+
+        shouldTryToAuthenticateWithBiometrics = self.ifTouchEnabled
+        self.customiseTouchIdButtonBeforeForeground()
     }
-    
-    // MARK: - Actions
-    
-    @IBAction func passcodeSignButtonTap(sender: PasscodeSignButton) {
-        
-        guard isPlaceholdersAnimationCompleted else { return }
-        
-        passcodeLock.addSign(sender.passcodeSign)
+
+    func customiseTouchIdButtonAfterForeground() {
+        touchIDButton.hidden = false
+        touchIDButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -35)
+        touchIDButton.contentHorizontalAlignment = .Center
+        touchIDButton.contentVerticalAlignment = .Center
+        touchIDButton.setTitle("Cancel", forState: .Normal)
+        touchIDButton.setImage(UIImage(), forState: .Normal)
+        touchIDButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PasscodeLockViewController.touchIdTapToCancel)))
     }
-    
-    @IBAction func cancelButtonTap(sender: UIButton) {
-        
-        dismissPasscodeLock(passcodeLock)
+
+    func customiseTouchIdButtonBeforeForeground() {
+        if passcodeConfiguration.shouldRequestTouchIDImmediately && passcodeLock.isTouchIDAllowed {
+            if self.ifTouchEnabled {
+                touchIDButton.setTitle("", forState: .Normal)
+                touchIDButton.setImage(UIImage(named: ""), forState: .Normal) // finger print image
+                let imageSize = touchIDButton.imageView?.frame.size
+                let spacing = ((imageSize?.width)! / 2)
+                touchIDButton.imageEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing - 35)
+                touchIDButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PasscodeLockViewController.showTouchIdAlert)))
+                addFrameToPasscodeLock()
+            } else {
+                touchIDButton.hidden = true
+            }
+        } else {
+            touchIDButton.hidden = true
+        }
     }
-    
-    @IBAction func deleteSignButtonTap(sender: UIButton) {
-        
-        passcodeLock.removeSign()
+
+    func addFrameToPasscodeLock() {
+        //Remove the cover view first, so that the cover view is not added twice
+        self.removeFrameFromView()
+
+        self.coverView = UIView(frame: CGRectMake(0, 0, getDeviceWidth(), getDeviceHeight()))
+        self.coverView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.9)
+        self.coverView.tag = 100
+        self.view.addSubview(self.coverView)
     }
-    
-    @IBAction func touchIDButtonTap(sender: UIButton) {
-        
+
+    func removeFrameFromView() {
+        if let viewWithTag = self.view.viewWithTag(100) {
+            if self.coverView != nil {
+                self.coverView.removeFromSuperview()
+                self.coverView = nil
+            }
+        }
+    }
+
+    func addTouchIdPopup(lock: PasscodeLockType) {
+
+        if passcodeConfiguration.shouldRequestTouchIDImmediately && passcodeLock.isTouchIDAllowed {
+            addChildView(self.view)
+        } else {
+            dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
+                self?.successCallback?(lock: lock)
+                })
+        }
+    }
+
+    func addChildView(bgView: UIView) {
+
+        let childView = TouchIdView.instanceFromNib()
+        childView.tag = 100
+        childView.frame = CGRect(x: 0, y: 0, width: getDeviceWidth(), height: getDeviceHeight())//CGRect(x: 0.12 * getDeviceWidth(), y: 0.109 * getDeviceHeight(), width: getDeviceWidth() - 94, height: getDeviceHeight() - 146)
+        bgView.addSubview(childView)
+        childView.enableTouchIdButton.addTarget(self, action: #selector(enableTouchIdAction(_:)), forControlEvents: .TouchUpInside)
+        childView.disableTouchIdButton.addTarget(self, action: #selector(disableTouchIdButton(_:)), forControlEvents: .TouchUpInside)
+    }
+
+    func enableTouchIdAction(sender: UIButton) {
+        dismissTouchIdPopup()
+    }
+
+    func disableTouchIdButton(sender: UIButton) {
+        dismissTouchIdPopup()
+    }
+
+    func dismissTouchIdPopup() {
+        if let view = self.view.viewWithTag(100) {
+            view.removeFromSuperview()
+        }
+    }
+
+    func getDeviceWidth() -> CGFloat {
+        return UIScreen.mainScreen().bounds.width
+    }
+
+    //Method to get Device Height
+    func getDeviceHeight() -> CGFloat {
+        return UIScreen.mainScreen().bounds.height
+    }
+
+    func showTouchIdAlert() {
+        addFrameToPasscodeLock()
         passcodeLock.authenticateWithBiometrics()
     }
-    
+
+    func touchIdTapToCancel() {
+        animateOnDismiss = true
+        dismissPasscodeLock(passcodeLock)
+    }
+
+    // MARK: - Actions
+
+    @IBAction func passcodeSignButtonTap(sender: PasscodeSignButton) {
+
+        guard isPlaceholdersAnimationCompleted else { return }
+
+        passcodeLock.addSign(sender.passcodeSign)
+    }
+
+    @IBAction func cancelButtonTap(sender: UIButton) {
+
+        dismissPasscodeLock(passcodeLock)
+    }
+
+    @IBAction func deleteSignButtonTap(sender: UIButton) {
+
+        passcodeLock.removeSign()
+    }
+
+    @IBAction func touchIDButtonTap(sender: UIButton) {
+
+        passcodeLock.authenticateWithBiometrics()
+    }
+
     private func authenticateWithBiometrics() {
-        
+
         if passcodeConfiguration.shouldRequestTouchIDImmediately && passcodeLock.isTouchIDAllowed {
-            
+
             passcodeLock.authenticateWithBiometrics()
         }
     }
-    
+
     internal func dismissPasscodeLock(lock: PasscodeLockType, completionHandler: (() -> Void)? = nil) {
-        
+
         // if presented as modal
         if presentingViewController?.presentedViewController == self {
-            
+
             dismissViewControllerAnimated(animateOnDismiss, completion: { [weak self] _ in
-                
+
                 self?.dismissCompletionCallback?()
-                
+
                 completionHandler?()
             })
-            
+
             return
-            
+
         // if pushed in a navigation controller
         } else if navigationController != nil {
-        
+
             navigationController?.popViewControllerAnimated(animateOnDismiss)
         }
-        
+
         dismissCompletionCallback?()
-        
+
         completionHandler?()
     }
-    
+
     // MARK: - Animations
-    
+
     internal func animateWrongPassword() {
-        
+
         deleteSignButton?.enabled = false
         isPlaceholdersAnimationCompleted = false
-        
+
         animatePlaceholders(placeholders, toState: .Error)
-        
+
         placeholdersX?.constant = -40
         view.layoutIfNeeded()
-        
+
         UIView.animateWithDuration(
             0.5,
             delay: 0,
@@ -206,67 +336,69 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
             initialSpringVelocity: 0,
             options: [],
             animations: {
-                
+
                 self.placeholdersX?.constant = 0
                 self.view.layoutIfNeeded()
             },
             completion: { completed in
-                
+
                 self.isPlaceholdersAnimationCompleted = true
                 self.animatePlaceholders(self.placeholders, toState: .Inactive)
         })
     }
-    
+
     internal func animatePlaceholders(placeholders: [PasscodeSignPlaceholderView], toState state: PasscodeSignPlaceholderView.State) {
-        
+
         for placeholder in placeholders {
-            
+
             placeholder.animateState(state)
         }
     }
-    
+
     private func animatePlacehodlerAtIndex(index: Int, toState state: PasscodeSignPlaceholderView.State) {
-        
+
         guard index < placeholders.count && index >= 0 else { return }
-        
+
         placeholders[index].animateState(state)
     }
 
     // MARK: - PasscodeLockDelegate
-    
+
     public func passcodeLockDidSucceed(lock: PasscodeLockType) {
-        
+
         deleteSignButton?.enabled = true
         animatePlaceholders(placeholders, toState: .Inactive)
+        // Show touch id popup
+        self.addTouchIdPopup(lock)
         dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
             self?.successCallback?(lock: lock)
         })
     }
-    
+
     public func passcodeLockDidFail(lock: PasscodeLockType) {
-        
+
         animateWrongPassword()
     }
-    
+
     public func passcodeLockDidChangeState(lock: PasscodeLockType) {
-        
+
         updatePasscodeView()
         animatePlaceholders(placeholders, toState: .Inactive)
         deleteSignButton?.enabled = false
     }
-    
+
     public func passcodeLock(lock: PasscodeLockType, addedSignAtIndex index: Int) {
-        
+
         animatePlacehodlerAtIndex(index, toState: .Active)
         deleteSignButton?.enabled = true
     }
-    
+
     public func passcodeLock(lock: PasscodeLockType, removedSignAtIndex index: Int) {
-        
+
         animatePlacehodlerAtIndex(index, toState: .Inactive)
-        
+
         if index == 0 {
-            
+
             deleteSignButton?.enabled = false
         }
     }
