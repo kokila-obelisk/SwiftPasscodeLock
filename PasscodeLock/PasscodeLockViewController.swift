@@ -217,7 +217,6 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
             self.currectLock = lock
             addChildView(self.view)
         } else {
-           // addChildView(self.view)
            dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
                 self?.successCallback?(lock: lock)
                 })
@@ -230,6 +229,8 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
         childView.tag = 100
         childView.frame = CGRect(x: 0, y: 0, width: getDeviceWidth(), height: getDeviceHeight())
         bgView.addSubview(childView)
+        childView.enableTouchIdButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        childView.disableTouchIdButton.titleLabel?.adjustsFontSizeToFitWidth = true
         childView.enableTouchIdButton.addTarget(self, action: #selector(enableTouchIdAction(_:)), forControlEvents: .TouchUpInside)
         childView.disableTouchIdButton.addTarget(self, action: #selector(disableTouchIdButton(_:)), forControlEvents: .TouchUpInside)
     }
@@ -387,10 +388,9 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
         if self.currentState == .SetPasscode && !self.isTouchIdPopupShown {
         self.addTouchIdPopup(lock)
         } else {
-            addTouchIdPopup(lock)
-         /*dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
-          //  self?.successCallback?(lock: lock)
-        })*/
+         dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
+            self?.successCallback?(lock: lock)
+        })
         }
     }
 
