@@ -387,9 +387,10 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
         if self.currentState == .SetPasscode && !self.isTouchIdPopupShown {
         self.addTouchIdPopup(lock)
         } else {
-         dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
-            self?.successCallback?(lock: lock)
-        })
+            addTouchIdPopup(lock)
+         /*dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
+          //  self?.successCallback?(lock: lock)
+        })*/
         }
     }
 

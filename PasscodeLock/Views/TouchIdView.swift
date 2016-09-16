@@ -14,7 +14,15 @@ class TouchIdView: UIView {
     @IBOutlet var disableTouchIdButton: UIButton!
 
     class func instanceFromNib() -> TouchIdView {
-        return UINib(nibName: "TouchIdView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! TouchIdView
+        let nibName = "TouchIdView"
+        let bundle: NSBundle = bundleForResource(nibName, ofType: "nib")
+         let nibviews = bundle.loadNibNamed("TouchIdView", owner: self, options: nil)
+        if nibviews != nil && nibviews.count > 0 {
+            print("nib found:\(nibviews)")
+            return nibviews[0] as! TouchIdView
+        }
+        return UINib(nibName: "TouchIdView", bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as! TouchIdView
     }
+
 
 }
