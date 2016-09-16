@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88896EFA1D89BDE300F3E47E /* TouchIdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88896EF91D89BDE300F3E47E /* TouchIdView.xib */; };
 		88896F001D89CECD00F3E47E /* TouchIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88896EFF1D89CECC00F3E47E /* TouchIdView.swift */; };
 		88896F041D89CFDA00F3E47E /* PasscodeLockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88896F031D89CFDA00F3E47E /* PasscodeLockView.xib */; };
+		88896F051D8A968F00F3E47E /* TouchIdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88896EF91D89BDE300F3E47E /* TouchIdView.xib */; };
+		88896F061D8A96AB00F3E47E /* TouchIdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88896EF91D89BDE300F3E47E /* TouchIdView.xib */; };
 		C99EAF431B90B05700D61E1B /* PasscodeLock.h in Headers */ = {isa = PBXBuildFile; fileRef = C99EAF421B90B05700D61E1B /* PasscodeLock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C99EAF4A1B90B05800D61E1B /* PasscodeLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C99EAF3F1B90B05700D61E1B /* PasscodeLock.framework */; };
 		C9D3DF131B91AD11008561EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D3DF121B91AD11008561EB /* AppDelegate.swift */; };
@@ -501,8 +502,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88896F051D8A968F00F3E47E /* TouchIdView.xib in Resources */,
 				88896F041D89CFDA00F3E47E /* PasscodeLockView.xib in Resources */,
-				88896EFA1D89BDE300F3E47E /* TouchIdView.xib in Resources */,
 				C9DC07FC1B90D0A3007A4DD0 /* PasscodeLock.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88896F061D8A96AB00F3E47E /* TouchIdView.xib in Resources */,
 				C9D3DF1D1B91AD11008561EB /* LaunchScreen.storyboard in Resources */,
 				C9D3DF1A1B91AD11008561EB /* Assets.xcassets in Resources */,
 				C9D3DF181B91AD11008561EB /* Main.storyboard in Resources */,

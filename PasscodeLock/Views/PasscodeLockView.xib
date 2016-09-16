@@ -5,9 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="NEOSANS-BOLD.OTF">
-            <string>NeoSans-Bold</string>
-        </mutableArray>
         <mutableArray key="NEOSANS.OTF">
             <string>NeoSans</string>
             <string>NeoSans</string>
@@ -26,10 +23,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PasscodeLockViewController" customModule="PasscodeLock" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImageView" destination="xJf-Nc-qow" id="DAZ-pF-pkU"/>
                 <outlet property="deleteSignButton" destination="o3m-3x-Ni5" id="Dka-iw-Rek"/>
                 <outlet property="descriptionLabel" destination="0gb-DQ-AWk" id="TfM-Kl-BL8"/>
                 <outlet property="placeholdersX" destination="dz7-jx-jVw" id="Dxf-fm-MQg"/>
-                <outlet property="setPasscodeButton" destination="cq2-GC-uz3" id="8pj-kg-zNO"/>
+                <outlet property="titleLabel" destination="zDY-II-aM1" id="7ie-dt-gIo"/>
                 <outlet property="touchIDButton" destination="8r1-Mb-4JB" id="jhb-Ze-NiS"/>
                 <outlet property="view" destination="iN0-l3-epB" id="4dc-hJ-geg"/>
                 <outletCollection property="placeholders" destination="w14-Kb-Jnf" collectionClass="NSMutableArray" id="OYC-Bu-Hqb"/>
@@ -46,6 +44,13 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xJf-Nc-qow">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Passcode" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDY-II-aM1">
+                    <rect key="frame" x="20" y="64" width="335" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HcN-lo-9Jb" userLabel="Placeholders">
                     <rect key="frame" x="107" y="108" width="172" height="20"/>
                     <subviews>
@@ -123,24 +128,20 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cq2-GC-uz3">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SET PASSCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYG-y1-96X">
                     <rect key="frame" x="0.0" y="378" width="375" height="65"/>
                     <color key="backgroundColor" red="0.094117647060000004" green="0.50588235290000005" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="cGV-Yi-rDb"/>
+                        <constraint firstAttribute="height" constant="65" id="XWr-JO-oSg"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="NeoSans-Bold" family="NeoSans" pointSize="36"/>
-                    <state key="normal" title="SET PASSCODE">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="showTouchIdPopup:" destination="-1" eventType="touchUpInside" id="Tio-jU-OBB"/>
-                    </connections>
-                </button>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgf-4a-fy7">
                     <rect key="frame" x="0.0" y="443" width="375" height="224"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rx-6J-zFx">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Rx-6J-zFx" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="250" y="0.0" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -148,11 +149,14 @@
                             <state key="normal" title="3">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="3"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="6sY-hB-xTd"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhI-6B-8dN">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhI-6B-8dN" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -163,11 +167,14 @@
                             <state key="normal" title="1">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="1"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="0DQ-8a-lS5"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydJ-z4-WUn">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydJ-z4-WUn" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="56" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -175,11 +182,14 @@
                             <state key="normal" title="4">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="4"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="29g-W6-Dim"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrd-0l-XgB">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrd-0l-XgB" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="112" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -187,11 +197,14 @@
                             <state key="normal" title="7">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="7"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="gwr-r3-PoW"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1a-90-UqL">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1a-90-UqL" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="125" y="112" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -199,11 +212,14 @@
                             <state key="normal" title="8">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="8"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="ouh-Bg-hxR"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFo-VK-CiA">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFo-VK-CiA" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="250" y="112" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -211,11 +227,14 @@
                             <state key="normal" title="9">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="9"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="jT3-RW-1nt"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqH-rM-vT1">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqH-rM-vT1" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="125" y="56" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -223,11 +242,14 @@
                             <state key="normal" title="5">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="5"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="roi-XS-2jH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua8-Lb-BmS">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ua8-Lb-BmS" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="250" y="56" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -235,11 +257,14 @@
                             <state key="normal" title="6">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="6"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="PVZ-MQ-pOm"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDA-Up-xen">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDA-Up-xen" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="125" y="0.0" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -247,11 +272,14 @@
                             <state key="normal" title="2">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="2"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="bC9-cI-Gml"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KhL-ge-qxh">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KhL-ge-qxh" customClass="PasscodeSignButton" customModule="PasscodeLock" customModuleProvider="target">
                             <rect key="frame" x="125" y="168" width="125" height="56"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="29"/>
@@ -259,6 +287,9 @@
                             <state key="normal" title="0">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="passcodeSign" value="0"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="passcodeSignButtonTap:" destination="-1" eventType="touchUpInside" id="w4e-vJ-XM7"/>
                             </connections>
@@ -266,7 +297,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eX-yH-tOF">
                             <rect key="frame" x="250" y="168" width="125" height="56"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="keyboard_back" translatesAutoresizingMaskIntoConstraints="NO" id="lR3-Zc-d5r">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lR3-Zc-d5r">
                                     <rect key="frame" x="51" y="19" width="24" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="8KH-b4-kaE"/>
@@ -364,29 +395,31 @@
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="vgf-4a-fy7" firstAttribute="top" secondItem="jYG-y1-96X" secondAttribute="bottom" id="1dq-GY-iD8"/>
                 <constraint firstItem="0gb-DQ-AWk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3ff-HX-YN5"/>
                 <constraint firstAttribute="bottom" secondItem="xJf-Nc-qow" secondAttribute="bottom" id="49x-1U-Jbw"/>
+                <constraint firstAttribute="trailing" secondItem="jYG-y1-96X" secondAttribute="trailing" id="8hY-La-jRa"/>
                 <constraint firstAttribute="trailing" secondItem="0gb-DQ-AWk" secondAttribute="trailing" constant="20" id="I1n-OD-fGY"/>
-                <constraint firstAttribute="trailing" secondItem="cq2-GC-uz3" secondAttribute="trailing" id="LTC-1j-aht"/>
                 <constraint firstAttribute="trailing" secondItem="xJf-Nc-qow" secondAttribute="trailing" id="QQs-jy-pMf"/>
-                <constraint firstItem="vgf-4a-fy7" firstAttribute="top" secondItem="cq2-GC-uz3" secondAttribute="bottom" id="WYi-0p-xgT"/>
                 <constraint firstItem="HcN-lo-9Jb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="108" id="XOR-5q-EiK"/>
                 <constraint firstAttribute="bottom" secondItem="vgf-4a-fy7" secondAttribute="bottom" id="ZHf-K8-bLS"/>
+                <constraint firstItem="jYG-y1-96X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d7E-d4-TbJ"/>
                 <constraint firstItem="0gb-DQ-AWk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="dc3-zc-ywQ"/>
+                <constraint firstItem="zDY-II-aM1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="hZF-t5-TuN"/>
                 <constraint firstItem="HcN-lo-9Jb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iYI-57-M36"/>
                 <constraint firstItem="vgf-4a-fy7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jmy-Vn-rRB"/>
                 <constraint firstAttribute="trailing" secondItem="vgf-4a-fy7" secondAttribute="trailing" id="lSf-zx-y3R"/>
+                <constraint firstItem="HcN-lo-9Jb" firstAttribute="top" secondItem="zDY-II-aM1" secondAttribute="bottom" constant="14" id="nkd-R0-hdC"/>
                 <constraint firstItem="xJf-Nc-qow" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qBC-9m-Dvy"/>
                 <constraint firstItem="0gb-DQ-AWk" firstAttribute="top" secondItem="HcN-lo-9Jb" secondAttribute="bottom" constant="69" id="qj6-Xd-X2y"/>
                 <constraint firstItem="xJf-Nc-qow" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="s4K-bE-9hZ"/>
-                <constraint firstItem="cq2-GC-uz3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w3i-ic-sK9"/>
+                <constraint firstItem="zDY-II-aM1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="zLM-eh-ZGS"/>
+                <constraint firstAttribute="trailing" secondItem="zDY-II-aM1" secondAttribute="trailing" constant="20" id="zcM-Kv-015"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="90.5" y="291.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="keyboard_back" width="24" height="18"/>
-    </resources>
 </document>

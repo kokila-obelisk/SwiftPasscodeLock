@@ -17,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view alpha="0.75" contentMode="scaleToFill" id="iN0-l3-epB" customClass="TouchIdView" customModule="PasscodeLock">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TouchIdView" customModule="PasscodeLock">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -73,6 +73,8 @@
                         <constraint firstItem="fb5-LG-DTv" firstAttribute="leading" secondItem="ADi-Qf-JVd" secondAttribute="leading" constant="89" id="15Z-oE-148"/>
                         <constraint firstItem="TpF-ra-Vn8" firstAttribute="leading" secondItem="ADi-Qf-JVd" secondAttribute="leading" constant="83" id="6ct-2z-Qys"/>
                         <constraint firstItem="TpF-ra-Vn8" firstAttribute="top" secondItem="ADi-Qf-JVd" secondAttribute="top" constant="61" id="8os-Jf-0AN"/>
+                        <constraint firstItem="Utp-1i-hJP" firstAttribute="leading" secondItem="ADi-Qf-JVd" secondAttribute="leading" constant="31" id="AlF-tf-T8P"/>
+                        <constraint firstAttribute="trailing" secondItem="Utp-1i-hJP" secondAttribute="trailing" constant="31" id="D6F-Bp-9lj"/>
                         <constraint firstItem="fb5-LG-DTv" firstAttribute="centerX" secondItem="ADi-Qf-JVd" secondAttribute="centerX" id="GLR-8X-r2q"/>
                         <constraint firstItem="9JO-ZY-gGD" firstAttribute="centerX" secondItem="ADi-Qf-JVd" secondAttribute="centerX" id="JPl-Y3-ikY"/>
                         <constraint firstAttribute="trailing" secondItem="TpF-ra-Vn8" secondAttribute="trailing" constant="83" id="K07-MC-fGg"/>
@@ -87,7 +89,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="ADi-Qf-JVd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2p9-I1-oDi"/>
                 <constraint firstItem="ADi-Qf-JVd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="6SZ-gJ-gsn"/>

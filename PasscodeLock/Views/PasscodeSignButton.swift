@@ -59,9 +59,9 @@ public class PasscodeSignButton: UIButton {
 
     private func setupView() {
 
-        layer.borderWidth = 1
-        layer.cornerRadius = borderRadius
-        layer.borderColor = borderColor.CGColor
+        //layer.borderWidth = 1
+        //layer.cornerRadius = borderRadius
+        //layer.borderColor = borderColor.CGColor
 
         if let backgroundColor = backgroundColor {
 
