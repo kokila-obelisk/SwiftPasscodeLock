@@ -14,6 +14,7 @@ s.source_files = 'PasscodeLock/*.{h,swift}',
 
 s.resources = [
 				'PasscodeLock/Views/PasscodeLockView.xib',
+				'PasscodeLock/Views/TouchIdView.xib',
 				'PasscodeLock/en.lproj/*'
 			  ]
 
