@@ -102,6 +102,7 @@
             <connections>
                 <outlet property="disableTouchIdButton" destination="fb5-LG-DTv" id="EGn-1V-V7G"/>
                 <outlet property="enableTouchIdButton" destination="HgC-yk-cQX" id="Unl-s3-pbE"/>
+                <outlet property="touchImageview" destination="TpF-ra-Vn8" id="vef-Fu-0Or"/>
             </connections>
             <point key="canvasLocation" x="-132.5" y="340.5"/>
         </view>

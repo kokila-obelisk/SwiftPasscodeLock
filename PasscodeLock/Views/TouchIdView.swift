@@ -12,6 +12,7 @@ class TouchIdView: UIView {
 
     @IBOutlet var enableTouchIdButton: UIButton!
     @IBOutlet var disableTouchIdButton: UIButton!
+    @IBOutlet var touchImageview: UIImageView!
 
     class func instanceFromNib() -> TouchIdView {
         let nibName = "TouchIdView"

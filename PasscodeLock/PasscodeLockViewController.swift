@@ -35,6 +35,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     @IBOutlet public weak var touchIDButton: UIButton!
     @IBOutlet public weak var placeholdersX: NSLayoutConstraint?
     @IBOutlet var backgroundImageView: UIImageView!
+    @IBOutlet var keyboardBackImageView: UIImageView!
 
     var isCancelButton: Bool = true
     var ifTouchEnabled: Bool = true
@@ -112,8 +113,8 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     }
 
     func configBackgroundImage() {
-        //backgroundImageView.image = UIImage(named: "")// To be added
-
+        backgroundImageView.image = UIImage(named: "mobileRegistration")// To be added
+        keyboardBackImageView.image = UIImage(named: "keyboard_back")
     }
 
     internal func updatePasscodeView() {
@@ -233,6 +234,7 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
         childView.disableTouchIdButton.titleLabel?.adjustsFontSizeToFitWidth = true
         childView.enableTouchIdButton.addTarget(self, action: #selector(enableTouchIdAction(_:)), forControlEvents: .TouchUpInside)
         childView.disableTouchIdButton.addTarget(self, action: #selector(disableTouchIdButton(_:)), forControlEvents: .TouchUpInside)
+        childView.touchImageview.image = UIImage(named: "tapImage")
     }
 
     func enableTouchIdAction(sender: UIButton) {

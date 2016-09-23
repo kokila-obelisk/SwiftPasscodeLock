@@ -26,6 +26,7 @@
                 <outlet property="backgroundImageView" destination="xJf-Nc-qow" id="DAZ-pF-pkU"/>
                 <outlet property="deleteSignButton" destination="o3m-3x-Ni5" id="Dka-iw-Rek"/>
                 <outlet property="descriptionLabel" destination="0gb-DQ-AWk" id="TfM-Kl-BL8"/>
+                <outlet property="keyboardBackImageView" destination="lR3-Zc-d5r" id="TcK-Ze-ZJc"/>
                 <outlet property="placeholdersX" destination="dz7-jx-jVw" id="Dxf-fm-MQg"/>
                 <outlet property="titleLabel" destination="zDY-II-aM1" id="7ie-dt-gIo"/>
                 <outlet property="touchIDButton" destination="8r1-Mb-4JB" id="jhb-Ze-NiS"/>
