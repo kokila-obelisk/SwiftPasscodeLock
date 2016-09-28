@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="NEOSANS-BOLD.OTF">
+        <array key="NEOSANS-BOLD.OTF">
             <string>NeoSans-Bold</string>
-        </mutableArray>
-        <mutableArray key="NEOSANS.OTF">
+        </array>
+        <array key="NEOSANS.OTF">
             <string>NeoSans</string>
-            <string>NeoSans</string>
-            <string>NeoSans</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -22,51 +21,49 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ADi-Qf-JVd">
-                    <rect key="frame" x="50" y="60" width="275" height="547"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TpF-ra-Vn8">
-                            <rect key="frame" x="83" y="94" width="109" height="124"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="124" id="k4l-xM-kVL"/>
                                 <constraint firstAttribute="width" constant="109" id="orW-e5-Rin"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Use Touch ID? " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JO-ZY-gGD">
-                            <rect key="frame" x="38" y="258" width="198" height="30"/>
+                            <frame key="frameInset" minX="38" minY="258" width="198" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="uCf-fs-Prr"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="24"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgC-yk-cQX">
-                            <rect key="frame" x="0.0" y="409" width="275" height="30"/>
+                            <frame key="frameInset" minY="409" width="275" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="fAo-d4-eSk"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="NeoSans-Bold" family="NeoSans" pointSize="20"/>
                             <state key="normal" title="YES ENABLE TOUCH ID">
-                                <color key="titleColor" red="0.1132417196" green="0.70196078429999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.1132417196" green="0.70196078429999997" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Would  you  like  to  enable  Touch  ID  instead  of  using  your  passcode? " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utp-1i-hJP">
-                            <rect key="frame" x="31" y="310" width="213" height="88"/>
+                            <frame key="frameInset" minX="31" minY="310" width="213" height="88"/>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="14"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-LG-DTv">
-                            <rect key="frame" x="89" y="468" width="96" height="30"/>
+                            <frame key="frameInset" minX="89" minY="468" width="96" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Bz5-h4-aSc"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="20"/>
                             <state key="normal" title="NOT NOW">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="Utp-1i-hJP" firstAttribute="centerX" secondItem="ADi-Qf-JVd" secondAttribute="centerX" id="0jM-Di-nkY"/>
                         <constraint firstAttribute="trailing" secondItem="fb5-LG-DTv" secondAttribute="trailing" constant="90" id="0mb-wD-FC6"/>
@@ -89,7 +86,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ADi-Qf-JVd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2p9-I1-oDi"/>
                 <constraint firstItem="ADi-Qf-JVd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="6SZ-gJ-gsn"/>

@@ -42,7 +42,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     var touchId: Bool = true
     var coverView: UIView!
 
-    public var successCallback: ((lock: PasscodeLockType) -> Void)?
+    public var successCallback: ((_: PasscodeLockType) -> Void)?
     public var dismissCompletionCallback: (() -> Void)?
     public var animateOnDismiss: Bool
     public var notificationCenter: NSNotificationCenter?
@@ -212,14 +212,14 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     }
 
     func addTouchIdPopup(lock: PasscodeLockType) {
-print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguration.shouldRequestTouchIDImmediately)...:\(passcodeConfiguration.isTouchIDAllowed)")
+        print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguration.shouldRequestTouchIDImmediately)...:\(passcodeConfiguration.isTouchIDAllowed)")
         if passcodeConfiguration.shouldRequestTouchIDImmediately {
             print("add touch id view")
             self.currectLock = lock
             addChildView(self.view)
         } else {
            dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
-                self?.successCallback?(lock: lock)
+                self?.successCallback?(lock)
                 })
         }
     }
@@ -255,7 +255,7 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
         if let view = self.view.viewWithTag(100) {
             view.removeFromSuperview()
             dismissPasscodeLock(passcodeLock, completionHandler: { [weak self] _ in
-                self?.successCallback?(lock: self!.passcodeLock)
+                self?.successCallback?(self!.passcodeLock)
                 })
         }
     }
@@ -391,7 +391,7 @@ print("touch id called:\(passcodeLock.isTouchIDAllowed).. \(passcodeConfiguratio
         self.addTouchIdPopup(lock)
         } else {
          dismissPasscodeLock(lock, completionHandler: { [weak self] _ in
-            self?.successCallback?(lock: lock)
+            self?.successCallback?(lock)
         })
         }
     }

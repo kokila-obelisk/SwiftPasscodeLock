@@ -18,9 +18,9 @@ class TouchIdView: UIView {
         let nibName = "TouchIdView"
         let bundle: NSBundle = bundleForResource(nibName, ofType: "nib")
          let nibviews = bundle.loadNibNamed("TouchIdView", owner: self, options: nil)
-        if nibviews != nil && nibviews.count > 0 {
+        if nibviews != nil && nibviews!.count > 0 {
             print("nib found:\(nibviews)")
-            return nibviews[0] as! TouchIdView
+            return nibviews![0] as! TouchIdView
         }
         return UINib(nibName: "TouchIdView", bundle: bundle).instantiateWithOwner(nil, options: nil)[0] as! TouchIdView
     }
