@@ -36,7 +36,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     @IBOutlet public weak var placeholdersX: NSLayoutConstraint?
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var keyboardBackImageView: UIImageView!
-    @IBOutlet public weak var headerView: UIView!
+    @IBOutlet public var headerView: UIView!
     
     var isCancelButton: Bool = true
     var ifTouchEnabled: Bool = true
@@ -57,7 +57,8 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     var currectLock: PasscodeLockType!
     var currentState: LockState!
     var isTouchIdPopupShown: Bool = false
-    var titleAmount: String!
+    public var titleAmount: String!
+    public var breadCrumbView: UIView!
     
     // MARK: - Initializers
     
@@ -166,6 +167,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
         touchIDButton?.hidden = !passcodeLock.isTouchIDAllowed
         touchIDButton?.enabled = true
         
+        // headerView.addSubview(breadCrumbView)
         customNavigationBarTitle()
         
     }
