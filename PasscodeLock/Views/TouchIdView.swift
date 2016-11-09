@@ -13,7 +13,9 @@ class TouchIdView: UIView {
     @IBOutlet var enableTouchIdButton: UIButton!
     @IBOutlet var disableTouchIdButton: UIButton!
     @IBOutlet var touchImageview: UIImageView!
-
+    @IBOutlet var closeImageview: UIImageView!
+    @IBOutlet var closeView: UIView!
+    
     class func instanceFromNib() -> TouchIdView {
         let nibName = "TouchIdView"
         let bundle: NSBundle = bundleForResource(nibName, ofType: "nib")

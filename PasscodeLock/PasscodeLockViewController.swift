@@ -283,6 +283,10 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
         childView.enableTouchIdButton.addTarget(self, action: #selector(enableTouchIdAction(_:)), forControlEvents: .TouchUpInside)
         childView.disableTouchIdButton.addTarget(self, action: #selector(disableTouchIdButton(_:)), forControlEvents: .TouchUpInside)
         childView.touchImageview.image = UIImage(named: "tapImage")
+        childView.closeImageview.image = UIImage(named: "close")
+        let gestureClose = UITapGestureRecognizer(target: self, action: #selector(dismissTouchIdPopup()))
+        
+        childView.closeView.addGestureRecognizer(gestureClose)
     }
     
     func enableTouchIdAction(sender: UIButton) {

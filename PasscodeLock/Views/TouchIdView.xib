@@ -28,6 +28,19 @@
                                 <constraint firstAttribute="width" constant="109" id="orW-e5-Rin"/>
                             </constraints>
                         </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQ1-04-g6l">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQK-HT-eRa">
+                                    <frame key="frameInset" minX="19" minY="19" width="12" height="12"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="qhK-bC-IwF"/>
+                                <constraint firstAttribute="width" constant="50" id="z8L-b7-Xe2"/>
+                            </constraints>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Use Touch ID? " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JO-ZY-gGD">
                             <frame key="frameInset" minX="38" minY="258" width="198" height="30"/>
                             <constraints>
@@ -47,9 +60,17 @@
                                 <color key="titleColor" red="0.1132417196" green="0.70196078429999997" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Would  you  like  to  enable  Touch  ID  instead  of  using  your  passcode? " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utp-1i-hJP">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utp-1i-hJP">
                             <frame key="frameInset" minX="31" minY="310" width="213" height="88"/>
-                            <fontDescription key="fontDescription" name="NeoSans" family="NeoSans" pointSize="14"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Would  you  like  to  enable  Touch  ID  instead  of  using  your  passcode? ">
+                                    <attributes>
+                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb5-LG-DTv">
@@ -73,7 +94,9 @@
                         <constraint firstAttribute="trailing" secondItem="Utp-1i-hJP" secondAttribute="trailing" constant="31" id="D6F-Bp-9lj"/>
                         <constraint firstItem="fb5-LG-DTv" firstAttribute="centerX" secondItem="ADi-Qf-JVd" secondAttribute="centerX" id="GLR-8X-r2q"/>
                         <constraint firstItem="9JO-ZY-gGD" firstAttribute="centerX" secondItem="ADi-Qf-JVd" secondAttribute="centerX" id="JPl-Y3-ikY"/>
+                        <constraint firstAttribute="trailing" secondItem="gQ1-04-g6l" secondAttribute="trailing" id="Jpu-1Y-YuC"/>
                         <constraint firstAttribute="trailing" secondItem="TpF-ra-Vn8" secondAttribute="trailing" constant="83" id="K07-MC-fGg"/>
+                        <constraint firstItem="gQ1-04-g6l" firstAttribute="top" secondItem="ADi-Qf-JVd" secondAttribute="top" id="P5X-Sn-0Nz"/>
                         <constraint firstItem="fb5-LG-DTv" firstAttribute="top" secondItem="HgC-yk-cQX" secondAttribute="bottom" constant="29" id="VD7-kg-6LE"/>
                         <constraint firstItem="HgC-yk-cQX" firstAttribute="top" secondItem="Utp-1i-hJP" secondAttribute="bottom" constant="6" id="Vv2-eK-Qaw"/>
                         <constraint firstItem="TpF-ra-Vn8" firstAttribute="centerX" secondItem="ADi-Qf-JVd" secondAttribute="centerX" id="WBb-en-7LW"/>
@@ -97,6 +120,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="closeImageview" destination="oQK-HT-eRa" id="SiX-Jp-vzN"/>
+                <outlet property="closeView" destination="gQ1-04-g6l" id="GIx-3K-q4r"/>
                 <outlet property="disableTouchIdButton" destination="fb5-LG-DTv" id="EGn-1V-V7G"/>
                 <outlet property="enableTouchIdButton" destination="HgC-yk-cQX" id="Unl-s3-pbE"/>
                 <outlet property="touchImageview" destination="TpF-ra-Vn8" id="vef-Fu-0Or"/>
