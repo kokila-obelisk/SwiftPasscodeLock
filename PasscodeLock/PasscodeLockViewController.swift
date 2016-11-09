@@ -57,7 +57,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     var currectLock: PasscodeLockType!
     var currentState: LockState!
     var isTouchIdPopupShown: Bool = false
-    var titleAmount: String = ""
+    var titleAmount: String!
     
     // MARK: - Initializers
     
@@ -161,6 +161,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
     
     internal func updatePasscodeView() {
         titleLabel?.text = passcodeLock.state.title
+        titleLabel?.adjustsFontSizeToFitWidth = true
         //descriptionLabel?.text = passcodeLock.state.description
         touchIDButton?.hidden = !passcodeLock.isTouchIDAllowed
         touchIDButton?.enabled = true
@@ -389,7 +390,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
         
         animatePlaceholders(placeholders, toState: .Error)
         
-        placeholdersX?.constant = -40
+        placeholdersX?.constant = 0
         view.layoutIfNeeded()
         
         UIView.animateWithDuration(

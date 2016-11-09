@@ -18,8 +18,7 @@
                 <outlet property="descriptionLabel" destination="0gb-DQ-AWk" id="TfM-Kl-BL8"/>
                 <outlet property="headerView" destination="Me6-NW-GDJ" id="e1M-LC-QTK"/>
                 <outlet property="keyboardBackImageView" destination="lR3-Zc-d5r" id="TcK-Ze-ZJc"/>
-                <outlet property="placeholdersX" destination="dz7-jx-jVw" id="Dxf-fm-MQg"/>
-                <outlet property="titleLabel" destination="zDY-II-aM1" id="7ie-dt-gIo"/>
+                <outlet property="titleLabel" destination="jYG-y1-96X" id="KvJ-dJ-MwJ"/>
                 <outlet property="touchIDButton" destination="8r1-Mb-4JB" id="jhb-Ze-NiS"/>
                 <outlet property="view" destination="iN0-l3-epB" id="4dc-hJ-geg"/>
                 <outletCollection property="placeholders" destination="w14-Kb-Jnf" collectionClass="NSMutableArray" id="OYC-Bu-Hqb"/>
@@ -34,12 +33,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xJf-Nc-qow"/>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Passcode" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDY-II-aM1">
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Me6-NW-GDJ">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -115,8 +108,8 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="170" id="JQZ-mG-dO4"/>
                         <constraint firstAttribute="height" constant="20" id="WcY-Wz-ZsC"/>
-                        <constraint firstAttribute="width" constant="170" id="dz7-jx-jVw"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6N-7m-zCV">
@@ -392,6 +385,7 @@
                 <constraint firstItem="vgf-4a-fy7" firstAttribute="top" secondItem="jYG-y1-96X" secondAttribute="bottom" id="1dq-GY-iD8"/>
                 <constraint firstAttribute="bottom" secondItem="xJf-Nc-qow" secondAttribute="bottom" id="49x-1U-Jbw"/>
                 <constraint firstAttribute="trailing" secondItem="jYG-y1-96X" secondAttribute="trailing" id="8hY-La-jRa"/>
+                <constraint firstItem="Me6-NW-GDJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Kfj-ao-1ju"/>
                 <constraint firstAttribute="trailing" secondItem="I6N-7m-zCV" secondAttribute="trailing" id="PBV-hZ-OYl"/>
                 <constraint firstItem="Me6-NW-GDJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="PbC-Vt-Zte"/>
                 <constraint firstAttribute="trailing" secondItem="xJf-Nc-qow" secondAttribute="trailing" id="QQs-jy-pMf"/>
@@ -400,7 +394,6 @@
                 <constraint firstItem="I6N-7m-zCV" firstAttribute="top" secondItem="HcN-lo-9Jb" secondAttribute="bottom" id="aR6-Go-fOA"/>
                 <constraint firstItem="I6N-7m-zCV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cvz-eF-EjZ"/>
                 <constraint firstItem="jYG-y1-96X" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d7E-d4-TbJ"/>
-                <constraint firstItem="zDY-II-aM1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="hZF-t5-TuN"/>
                 <constraint firstItem="HcN-lo-9Jb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="iYI-57-M36"/>
                 <constraint firstItem="jYG-y1-96X" firstAttribute="top" secondItem="I6N-7m-zCV" secondAttribute="bottom" id="ib1-QC-eQR"/>
                 <constraint firstItem="vgf-4a-fy7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jmy-Vn-rRB"/>
@@ -409,8 +402,6 @@
                 <constraint firstItem="Me6-NW-GDJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nat-Oh-Vqg"/>
                 <constraint firstItem="xJf-Nc-qow" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qBC-9m-Dvy"/>
                 <constraint firstItem="xJf-Nc-qow" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="s4K-bE-9hZ"/>
-                <constraint firstItem="zDY-II-aM1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="zLM-eh-ZGS"/>
-                <constraint firstAttribute="trailing" secondItem="zDY-II-aM1" secondAttribute="trailing" constant="20" id="zcM-Kv-015"/>
             </constraints>
             <point key="canvasLocation" x="90.5" y="291.5"/>
         </view>
