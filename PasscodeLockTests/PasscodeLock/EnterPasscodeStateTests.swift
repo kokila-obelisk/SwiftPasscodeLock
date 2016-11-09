@@ -17,7 +17,7 @@ class NotificaionObserver: NSObject {
         
         let center = NSNotificationCenter.defaultCenter()
         
-        center.addObserver(self, selector: "handle:", name: notification, object: nil)
+        center.addObserver(self, selector: #selector(NotificaionObserver.handle(_:)), name: notification, object: nil)
     }
     
     func handle(notification: NSNotification) {
