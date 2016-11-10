@@ -284,8 +284,7 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
         childView.disableTouchIdButton.addTarget(self, action: #selector(disableTouchIdButton(_:)), forControlEvents: .TouchUpInside)
         childView.touchImageview.image = UIImage(named: "tapImage")
         childView.closeImageview.image = UIImage(named: "close")
-        let gestureClose = UITapGestureRecognizer(target: self, action: #selector(dismissTouchIdPopup()))
-        
+        let gestureClose = UITapGestureRecognizer(target: self, action: #selector(closeClicked(_:)))
         childView.closeView.addGestureRecognizer(gestureClose)
     }
     
@@ -303,6 +302,10 @@ public class PasscodeLockViewController: UIViewController, PasscodeLockTypeDeleg
         dismissTouchIdPopup()
     }
     
+    func closeClicked(sender: UITapGestureRecognizer) {
+        dismissTouchIdPopup()
+    }
+
     func dismissTouchIdPopup() {
         if let view = self.view.viewWithTag(100) {
             view.removeFromSuperview()
